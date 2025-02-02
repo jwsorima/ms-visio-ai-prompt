@@ -1,0 +1,156 @@
+Extracted Visio Diagram Data:
+
+Page: Page-1
+Shape ID 7:
+   • Is Connector: False
+   • Text: 'Submit the registration form'
+   • Type: Process
+   • Position: (X: 4.125000016763803, Y: 5.893292807098558)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 8:
+   • Is Connector: False
+   • Text: 'Form Complete?'
+   • Type: Decision
+   • Position: (X: 4.125000016763803, Y: 4.125000041909514)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 3:
+   • Is Connector: True
+   • Text: ''
+   • Type: Dynamic connector
+   • Position: (X: 4.125000016763803, Y: 5.009146424504036)
+   • Dimensions: (Width: 0.25, Height: -1.018292765189043)
+
+   • From 'Submit the registration form' to this arrow
+   • This arrow to 'Form Complete?'
+Shape ID 4:
+   • Is Connector: True
+   • Text: 'No'
+   • Type: Unknown
+   • Position: (X: 4.625000016763803, Y: 5.009146424504036)
+   • Dimensions: (Width: 0.25, Height: 1.768292765189043)
+
+   • From 'Form Complete?' to this arrow
+   • This arrow to 'Submit the registration form'
+Shape ID 6:
+   • Is Connector: True
+   • Text: 'Yes'
+   • Type: Unknown
+   • Position: (X: 4.125000016763803, Y: 3.375000041909514)
+   • Dimensions: (Width: 0.25, Height: -0.75)
+
+   • From 'Form Complete?' to this arrow
+   • This arrow to 'Verify Details of Submission'
+Shape ID 9:
+   • Is Connector: False
+   • Text: 'Verify Details of Submission'
+   • Type: Unknown
+   • Position: (X: 4.125000016763803, Y: 2.625000041909514)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 12:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 5.187499977648256, Y: 2.625000012572854)
+   • Dimensions: (Width: 1.124999921768907, Height: -0.25)
+
+   • From 'Verify Details of Submission' to this arrow
+   • This arrow to 'Accept Submission?'
+Shape ID 11:
+   • Is Connector: False
+   • Text: 'Accept Submission?'
+   • Type: Decision
+   • Position: (X: 6.24999993853271, Y: 2.624999983236194)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 14:
+   • Is Connector: True
+   • Text: 'Yes'
+   • Type: Unknown
+   • Position: (X: 6.99999993853271, Y: 2.624999983236194)
+   • Dimensions: (Width: 0.5, Height: 0.25)
+
+   • This arrow to 'Write Acceptance Letter'
+   • From 'Accept Submission?' to this arrow
+Shape ID 13:
+   • Is Connector: False
+   • Text: 'Write Acceptance Letter'
+   • Type: Unknown
+   • Position: (X: 7.74999993853271, Y: 2.624999983236194)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 16:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 7.74999993853271, Y: 4.300813032497382)
+   • Dimensions: (Width: 0.25, Height: 2.601626098522377)
+
+   • This arrow to 'Acceptance Letter'
+   • From 'Write Acceptance Letter' to this arrow
+Shape ID 17:
+   • Is Connector: False
+   • Text: 'Acceptance Letter'
+   • Type: Document
+   • Position: (X: 7.74999993853271, Y: 5.893292748425237)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 19:
+   • Is Connector: True
+   • Text: 'No'
+   • Type: Unknown
+   • Position: (X: 6.24999993853271, Y: 3.576219349998526)
+   • Dimensions: (Width: 0.25, Height: 1.152438733524664)
+
+   • This arrow to 'Notify Student on the Rejection'
+   • From 'Accept Submission?' to this arrow
+Shape ID 18:
+   • Is Connector: False
+   • Text: 'Notify Student on the Rejection'
+   • Type: Unknown
+   • Position: (X: 6.24999993853271, Y: 4.527438716760858)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 62:
+   • Is Connector: False
+   • Text: 'Start'
+   • Type: Start/End
+   • Position: (X: 2.625000050291416, Y: 5.893292807098558)
+   • Dimensions: (Width: 1.0, Height: 0.375)
+
+Shape ID 63:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 3.375000033527609, Y: 5.893292807098556)
+   • Dimensions: (Width: 0.4999999664723873, Height: 0.25)
+
+   • This arrow to 'Submit the registration form'
+   • From 'Start' to this arrow
+Shape ID 64:
+   • Is Connector: False
+   • Text: 'End'
+   • Type: Start/End.64
+   • Position: (X: 6.24999993853271, Y: 5.893292748425237)
+   • Dimensions: (Width: 1.0, Height: 0.375)
+
+Shape ID 65:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 6.24999993853271, Y: 5.304115732593047)
+   • Dimensions: (Width: 0.25, Height: 0.8033540316643792)
+
+   • This arrow to 'End'
+   • From 'Notify Student on the Rejection' to this arrow
+Shape ID 66:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 6.99999993853271, Y: 5.893292748425235)
+   • Dimensions: (Width: -0.5, Height: -0.25)
+
+   • This arrow to 'End'
+   • From 'Acceptance Letter' to this arrow

@@ -1,0 +1,357 @@
+Extracted Visio Diagram Data:
+
+Page: Page-1
+Shape ID 1:
+   • Is Connector: False
+   • Text: ''
+   • Type: CFF Container
+   • Position: (X: 5.6875, Y: 11.82660567331941)
+   • Dimensions: (Width: 10.875, Height: 9.153211346638827)
+Shape ID 4:
+   • Is Connector: False
+   • Text: ''
+   • Type: Swimlane List
+   • Position: (X: 0.25, Y: 15.65321134663883)
+   • Dimensions: (Width: 10.875, Height: 8.403211346638827)
+Shape ID 6:
+   • Is Connector: False
+   • Text: ''
+   • Type: Swimlane
+   • Position: (X: 5.6875, Y: 12.75)
+   • Dimensions: (Width: 10.875, Height: 1.5)
+Shape ID 9:
+   • Is Connector: False
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 5.6875, Y: 14.57660567331941)
+   • Dimensions: (Width: 10.875, Height: 2.153211346638827)
+Shape ID 15:
+   • Is Connector: False
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 5.6875, Y: 11.375)
+   • Dimensions: (Width: 10.875, Height: 1.25)
+Shape ID 18:
+   • Is Connector: False
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 5.6875, Y: 10.04839432668059)
+   • Dimensions: (Width: 10.875, Height: 1.403211346638826)
+Shape ID 24:
+   • Is Connector: False
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 5.6875, Y: 8.298394326680587)
+   • Dimensions: (Width: 10.875, Height: 2.096788653361173)
+Shape ID 5:
+   • Is Connector: False
+   • Text: ''
+   • Type: Phase List
+   • Position: (X: 0.7612000000000075, Y: 15.90321134663883)
+   • Dimensions: (Width: 10.3638, Height: 8.653211346638827)
+Shape ID 12:
+   • Is Connector: False
+   • Text: ''
+   • Type: Separator
+   • Position: (X: 10.22714068914297, Y: 11.57660567331941)
+   • Dimensions: (Width: 1.79571862171407, Height: 8.653211346638827)
+Shape ID 110:
+   • Is Connector: False
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 1.7556, Y: 11.57660567331941)
+   • Dimensions: (Width: 1.9888, Height: 8.653211346638827)
+Shape ID 113:
+   • Is Connector: False
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 3.5625, Y: 11.57660567331941)
+   • Dimensions: (Width: 1.625, Height: 8.653211346638827)
+Shape ID 116:
+   • Is Connector: False
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 5.999999791383749, Y: 11.57660567331941)
+   • Dimensions: (Width: 3.249999582767497, Height: 8.653211346638827)
+Shape ID 119:
+   • Is Connector: False
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 8.477140480526714, Y: 11.57660567331941)
+   • Dimensions: (Width: 1.704281795518433, Height: 8.653211346638827)
+Shape ID 27:
+   • Is Connector: False
+   • Text: 'Start'
+   • Type: Start/End
+   • Position: (X: 1.5112, Y: 14.9375)
+   • Dimensions: (Width: 1.0, Height: 0.375)
+
+Shape ID 29:
+   • Is Connector: True
+   • Text: ''
+   • Type: Dynamic connector
+   • Position: (X: 1.5112, Y: 14.625)
+   • Dimensions: (Width: 0.25, Height: -0.25)
+
+   • From 'Start' to this arrow
+   • This arrow to 'Capture Business Demand'
+Shape ID 28:
+   • Is Connector: False
+   • Text: 'Capture Business Demand'
+   • Type: Process
+   • Position: (X: 1.5112, Y: 14.125)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 31:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 1.545250000000011, Y: 13.5)
+   • Dimensions: (Width: 0.25, Height: -0.5)
+
+   • From 'Capture Business Demand' to this arrow
+   • This arrow to 'Create/Revise User Stories and Define Acceptance Criteria'
+Shape ID 30:
+   • Is Connector: False
+   • Text: 'Create/Revise User Stories and Define Acceptance Criteria'
+   • Type: Unknown
+   • Position: (X: 1.5793, Y: 12.75)
+   • Dimensions: (Width: 1.0, Height: 1.0)
+
+Shape ID 33:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 1.5793, Y: 12.0)
+   • Dimensions: (Width: 0.25, Height: -0.5)
+
+   • From 'Create/Revise User Stories and Define Acceptance Criteria' to this arrow
+   • This arrow to 'Review Delivery Plan with Other Teams'
+Shape ID 32:
+   • Is Connector: False
+   • Text: 'Review Delivery Plan with Other Teams'
+   • Type: Unknown
+   • Position: (X: 1.5793, Y: 11.375)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 37:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 2.596550000000009, Y: 11.375)
+   • Dimensions: (Width: 1.0345, Height: 0.25)
+
+   • From 'Review Delivery Plan with Other Teams' to this arrow
+   • This arrow to 'Risk Mitigation and Planning'
+Shape ID 36:
+   • Is Connector: False
+   • Text: 'Risk Mitigation and Planning'
+   • Type: Subprocess
+   • Position: (X: 3.6138, Y: 11.375)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 39:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 3.6138, Y: 12.0625)
+   • Dimensions: (Width: 0.25, Height: 0.625)
+
+   • This arrow to 'Create and Refine Solution Design'
+   • From 'Risk Mitigation and Planning' to this arrow
+Shape ID 38:
+   • Is Connector: False
+   • Text: 'Create and Refine Solution Design'
+   • Type: Unknown
+   • Position: (X: 3.6138, Y: 12.75)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 43:
+   • Is Connector: False
+   • Text: 'Review Solution Design'
+   • Type: Decision
+   • Position: (X: 5.72714089775922, Y: 10.04839432668059)
+   • Dimensions: (Width: 1.204281795518434, Height: 0.9032113466388256)
+
+Shape ID 44:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 4.6194, Y: 11.39919716334029)
+   • Dimensions: (Width: 1.0112, Height: -2.701605673319413)
+
+   • This arrow to 'Review Solution Design'
+   • From 'Create and Refine Solution Design' to this arrow
+Shape ID 45:
+   • Is Connector: False
+   • Text: 'Development and User Testing of User Stories'
+   • Type: Unknown
+   • Position: (X: 5.508390499153169, Y: 12.75)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 46:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 5.617765698456195, Y: 11.4375)
+   • Dimensions: (Width: -0.25, Height: 1.875)
+
+   • This arrow to 'Development and User Testing of User Stories'
+   • From 'Review Solution Design' to this arrow
+Shape ID 47:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 3.403220448879612, Y: 11.17339432668059)
+   • Dimensions: (Width: -4.647840897759217, Height: 3.153211346638827)
+
+   • This arrow to 'Create/Revise User Stories and Define Acceptance Criteria'
+   • From 'Review Solution Design' to this arrow
+Shape ID 48:
+   • Is Connector: False
+   • Text: 'Execute System Testing'
+   • Type: Unknown
+   • Position: (X: 6.772858685008284, Y: 8.645182980041762)
+   • Dimensions: (Width: 1.204281795518434, Height: 0.9032113466388254)
+
+Shape ID 49:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 6.12919524957659, Y: 12.75)
+   • Dimensions: (Width: 0.25, Height: 0.25)
+
+   • This arrow to 'Deploy into SIT Environment'
+   • From 'Development and User Testing of User Stories' to this arrow
+Shape ID 127:
+   • Is Connector: False
+   • Text: 'Deploy into UAT Environment'
+   • Type: Unknown
+   • Position: (X: 8.459899517109255, Y: 12.75)
+   • Dimensions: (Width: 1.125, Height: 0.75)
+
+Shape ID 51:
+   • Is Connector: False
+   • Text: 'Execute UAT Testing'
+   • Type: Unknown
+   • Position: (X: 8.477140480526714, Y: 14.95160567331941)
+   • Dimensions: (Width: 1.204281795518435, Height: 0.9032113466388263)
+
+Shape ID 52:
+   • Is Connector: False
+   • Text: 'Deploy to Production Environment'
+   • Type: Unknown
+   • Position: (X: 10.23830444688657, Y: 12.75)
+   • Dimensions: (Width: 1.204281795518435, Height: 0.75)
+
+Shape ID 53:
+   • Is Connector: True
+   • Text: 'Success'
+   • Type: Unknown
+   • Position: (X: 9.65879291258625, Y: 14.03830283665971)
+   • Dimensions: (Width: 1.159023068600639, Height: -1.826605673319413)
+
+   • This arrow to 'Deploy to Production Environment'
+   • From 'Execute UAT Testing' to this arrow
+Shape ID 54:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 8.468519998817985, Y: 13.8125)
+   • Dimensions: (Width: 0.25, Height: 1.375)
+
+   • This arrow to 'Execute UAT Testing'
+   • From 'Deploy into UAT Environment' to this arrow
+Shape ID 56:
+   • Is Connector: True
+   • Text: 'Failed'
+   • Type: Unknown
+   • Position: (X: 6.691695040960333, Y: 14.03830283665971)
+   • Dimensions: (Width: -2.366609083614327, Height: -1.826605673319413)
+
+   • This arrow to 'Development and User Testing of User Stories'
+   • From 'Execute UAT Testing' to this arrow
+Shape ID 57:
+   • Is Connector: False
+   • Text: 'Smoke Testing'
+   • Type: Unknown
+   • Position: (X: 10.07928137828593, Y: 8.721788653361175)
+   • Dimensions: (Width: 1.0, Height: 0.75)
+
+Shape ID 59:
+   • Is Connector: True
+   • Text: 'Success'
+   • Type: Unknown
+   • Position: (X: 10.07928137828593, Y: 8.110894326680587)
+   • Dimensions: (Width: 0.25, Height: -0.471788653361175)
+
+   • This arrow to 'End'
+   • From 'Smoke Testing' to this arrow
+Shape ID 58:
+   • Is Connector: False
+   • Text: 'End'
+   • Type: Unknown
+   • Position: (X: 10.07928137828593, Y: 7.6875)
+   • Dimensions: (Width: 0.4999996200204002, Height: 0.375)
+
+Shape ID 60:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 10.15879291258625, Y: 10.73589432668059)
+   • Dimensions: (Width: -0.25, Height: -3.278211346638825)
+
+   • This arrow to 'Smoke Testing'
+   • From 'Deploy to Production Environment' to this arrow
+Shape ID 61:
+   • Is Connector: True
+   • Text: 'Smoke Testing Failed'
+   • Type: Unknown
+   • Position: (X: 8.176070031647114, Y: 8.909288653361173)
+   • Dimensions: (Width: -2.806422693277632, Height: 0.3749999999999947)
+
+   • This arrow to 'Execute System Testing'
+   • From 'Smoke Testing' to this arrow
+Shape ID 62:
+   • Is Connector: True
+   • Text: 'System Testing
+Successful'
+   • Type: Unknown
+   • Position: (X: 7.917449549938379, Y: 10.51009149002088)
+   • Dimensions: (Width: 1.084899934341753, Height: 3.729817019958238)
+
+   • This arrow to 'Deploy into UAT Environment'
+   • From 'Execute System Testing' to this arrow
+Shape ID 122:
+   • Is Connector: True
+   • Text: ''
+   • Type: Unknown
+   • Position: (X: 6.028211346638836, Y: 9.82259149002088)
+   • Dimensions: (Width: 0.6021408977592175, Height: 0.4516056733194134)
+
+   • This arrow to 'Review Solution Design'
+   • From 'Review Solution Design' to this arrow
+Shape ID 123:
+   • Is Connector: True
+   • Text: 'System Testing
+Failed'
+   • Type: Unknown
+   • Position: (X: 5.589554143201118, Y: 10.69759149002088)
+   • Dimensions: (Width: -1.162327288095899, Height: 4.104817019958238)
+
+   • This arrow to 'Development and User Testing of User Stories'
+   • From 'Execute System Testing' to this arrow
+Shape ID 126:
+   • Text: 'Deployment Complete'
+   • Type: Dynamic connector.126
+   • Position: (X: 6.792679342504147, Y: 10.73589432668059)
+   • Dimensions: (Width: -0.25, Height: -3.278211346638827)
+
+   • From 'Deploy into SIT Environment' to this arrow
+   • This arrow to 'Execute System Testing'
+Shape ID 125:
+   • Is Connector: False
+   • Text: 'Deploy into SIT Environment'
+   • Type: Unknown
+   • Position: (X: 6.8125, Y: 12.75)
+   • Dimensions: (Width: 1.125, Height: 0.75)
