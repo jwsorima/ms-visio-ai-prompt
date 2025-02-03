@@ -1,11 +1,8 @@
 # Is this effective for Swimlane Diagrams?
-
 # return diagram in ascii to double check if diagram is accurate
 # before identifying the contents of diagram
 # can you rebuild this ms visio diagram in ascii
-
 # if the condition says loop back just say Loops back to "That part" ex. (Loops back to "Development & User Testing")
-
 # can you get the process description of this diagram?
 
 from vsdx import VisioFile
