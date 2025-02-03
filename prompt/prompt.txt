@@ -1,0 +1,4 @@
+These are data extracted from a VSDX file. Can you understand what the diagram represents?
+
+
+if the condition says loop back just say Loops back to "That part" ex. (Loops back to "Development & User Testing")

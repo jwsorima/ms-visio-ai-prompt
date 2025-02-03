@@ -93,3 +93,7 @@ def extract_vsdx_details(file_path):
 file_path = "Basic Flowchart Diagram - Student Enrollment Process.vsdx"
 parsed_details = extract_vsdx_details(file_path)
 print(parsed_details)
+
+
+
+# make output json like
