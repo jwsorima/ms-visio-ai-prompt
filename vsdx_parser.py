@@ -87,9 +87,9 @@ def extract_vsdx_details(file_path):
 
 # Example Usage
 # file_path = "Agile.Release.Process.Flowchart.Visiodiagram.vsdx"
-file_path = "Basic Flowchart Diagram - Student Enrollment Process.vsdx"
+file_path = "docs/Basic Flowchart Diagram - Student Enrollment Process.vsdx"
 parsed_details = extract_vsdx_details(file_path)
-print(parsed_details)
+# print(parsed_details)
 
 
 

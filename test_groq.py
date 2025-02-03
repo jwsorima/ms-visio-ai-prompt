@@ -2,10 +2,16 @@
 
 from dotenv import load_dotenv
 from groq import Groq
+from vsdx_parser import extract_vsdx_details
 
 load_dotenv()
 
 client = Groq()
+
+file_path = "docs/Basic Flowchart Diagram - Student Enrollment Process.vsdx"
+# file_path = "docs/Agile.Release.Process.Flowchart.Visiodiagram.vsdx"
+
+parsed_details = extract_vsdx_details(file_path)
 
 chat_completion = client.chat.completions.create(
     #
@@ -22,7 +28,14 @@ chat_completion = client.chat.completions.create(
         # Set a user message for the assistant to respond to.
         {
             "role": "user",
-            "content": "Explain the importance of fast language models",
+            # "content": "Explain the importance of fast language models",
+            "content": f"""
+              These are data extracted from a VSDX file. Can you understand what the diagram represents?
+              Give me a step by step process
+              if the condition says loop back just say Loops back to "That part" ex. (Loops back to "Development & User Testing")
+
+              {parsed_details}
+            """,
         }
     ],
 
