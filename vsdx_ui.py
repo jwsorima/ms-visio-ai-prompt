@@ -1,125 +1,103 @@
 import tkinter as tk
-from tkinter import filedialog, scrolledtext, messagebox
-from vsdx import VisioFile
-import os
+from tkinter import ttk, filedialog
+from PIL import Image, ImageTk
 
-# -------------------------------
-# Backend function to extract details from a VSDX file
-# -------------------------------
-def extract_vsdx_details(file_path):
-    with VisioFile(file_path) as vis:
-        details = "Extracted Visio Diagram Data:\n"
-        for page in vis.pages:
-            details += f"\nPage: {page.name}\n"
-            for shape in page.child_shapes:
-                shape_id = shape.ID
-                shape_text = shape.text.strip() if shape.text else ""
-                shape_type = shape.universal_name if shape.universal_name else "Unknown"
-                if shape_text.endswith("?"):
-                    shape_type = "Decision"
-                shape_x = shape.x
-                shape_y = shape.y
-                shape_width = shape.width
-                shape_height = shape.height
-                details += (
-                    f"Shape ID {shape_id}:\n"
-                    f"   • Is Connector: {True if shape.end_arrow and shape.end_arrow != 0 else False}\n"
-                    f"   • Text: '{shape_text}'\n"
-                    f"   • Type: {shape_type}\n"
-                    f"   • Position: (X: {shape_x}, Y: {shape_y})\n"
-                    f"   • Dimensions: (Width: {shape_width}, Height: {shape_height})\n"
-                )
-                if shape.connects:
-                    details += "\n"
-                    for conn in shape.connects:
-                        connected_shape = conn.shape
-                        from_shape = conn.from_id
-                        from_cell = conn.from_rel
-                        if connected_shape and connected_shape.ID == shape.ID:
-                            continue
-                        if from_shape and connected_shape:
-                            if from_cell == 'BeginX':
-                                details += f"   • From '{connected_shape.text.strip()}' to this arrow\n"
-                            elif from_cell == 'EndX':
-                                details += f"   • This arrow to '{connected_shape.text.strip()}'\n"
-        return details
+class HoverButton(tk.Canvas):
+    def __init__(self, master, text, command=None, **kw):
+        tk.Canvas.__init__(self, master, **kw)
+        self.command = command
+        self.text = text
 
-# -------------------------------
-# Tkinter UI Application
-# -------------------------------
-class VSDXAnalyzerApp:
+        self.button_bg = "#3B82F6"
+        self.button_hover = "#2563EB"
+        self.text_color = "#FFFFFF"
+        self.font = ("Segoe UI", 14, "bold")
+
+        self.width = 180
+        self.height = 50
+        self.radius = 20  
+
+        self.configure(width=self.width, height=self.height, highlightthickness=0, bg=master["bg"])
+        self.draw_rounded_rectangle()
+        
+        self.create_text(self.width / 2, self.height / 2, text=self.text, font=self.font, fill=self.text_color)
+
+        self.bind("<Button-1>", self.on_click)
+        self.bind("<Enter>", self.on_hover)
+        self.bind("<Leave>", self.on_leave)
+
+    def draw_rounded_rectangle(self):
+        self.create_rounded_rectangle(0, 0, self.width, self.height, self.radius, fill=self.button_bg, outline="")
+
+    def create_rounded_rectangle(self, x1, y1, x2, y2, radius, **kwargs):
+        self.create_arc(x1, y1, x1 + 2 * radius, y1 + 2 * radius, start=90, extent=90, **kwargs)
+        self.create_arc(x2 - 2 * radius, y1, x2, y1 + 2 * radius, start=0, extent=90, **kwargs)
+        self.create_arc(x2 - 2 * radius, y2 - 2 * radius, x2, y2, start=270, extent=90, **kwargs)
+        self.create_arc(x1, y2 - 2 * radius, x1 + 2 * radius, y2, start=180, extent=90, **kwargs)
+        self.create_rectangle(x1 + radius, y1, x2 - radius, y2, **kwargs)
+        self.create_rectangle(x1, y1 + radius, x2, y2 - radius, **kwargs)
+
+    def on_click(self, event):
+        if self.command:
+            self.command()
+
+    def on_hover(self, event):
+        self.delete("all")
+        self.button_bg = self.button_hover
+        self.draw_rounded_rectangle()
+        self.create_text(self.width / 2, self.height / 2, text=self.text, font=self.font, fill=self.text_color)
+
+    def on_leave(self, event):
+        self.delete("all")
+        self.button_bg = "#3B82F6"
+        self.draw_rounded_rectangle()
+        self.create_text(self.width / 2, self.height / 2, text=self.text, font=self.font, fill=self.text_color)
+
+class VisioDiagramApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Visio Diagram Analyzer")
-        self.root.geometry("800x600")
-        self.create_widgets()
+        self.root.title("Visio Diagram Manager")
+        self.root.geometry("800x500")
+        self.root.configure(bg='#FFFFFF')
 
-    def create_widgets(self):
-        # Create a scrolled text widget for the conversation display
-        self.chat_display = scrolledtext.ScrolledText(self.root, wrap=tk.WORD, state='disabled', font=("Arial", 11))
-        self.chat_display.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+        self.bg_color = '#FFFFFF'
+        self.text_color = '#333333'
+        self.desc_color = '#666666'
 
-        # Configure text tags for styling messages
-        self.chat_display.tag_config("user", background="#d1e7dd", foreground="black", spacing1=5, spacing3=5)
-        self.chat_display.tag_config("bot", background="#f8d7da", foreground="black", spacing1=5, spacing3=5)
+        self.root.rowconfigure(1, weight=1)
+        self.root.columnconfigure(0, weight=1)
 
-        # Create a frame for the buttons at the bottom
-        button_frame = tk.Frame(self.root)
-        button_frame.pack(padx=10, pady=10, fill=tk.X)
+        content_frame = tk.Frame(self.root, bg=self.bg_color)
+        content_frame.grid(row=0, column=0, sticky="nsew", padx=40, pady=50)
+        content_frame.columnconfigure(0, weight=1)
 
-        # Upload File button
-        self.upload_btn = tk.Button(button_frame, text="Upload VSDX File", command=self.upload_file, bg="#0d6efd", fg="white", padx=10, pady=5)
-        self.upload_btn.pack(side=tk.LEFT, padx=5)
+        welcome_label = tk.Label(content_frame, 
+                                 text="Visio Diagram Manager", 
+                                 font=('Segoe UI', 24, 'bold'),
+                                 fg=self.text_color, 
+                                 bg=self.bg_color)
+        welcome_label.grid(row=0, column=0, pady=(0, 20), sticky="n")
 
-        # Optionally, a Clear Chat button
-        self.clear_btn = tk.Button(button_frame, text="Clear Chat", command=self.clear_chat, bg="#dc3545", fg="white", padx=10, pady=5)
-        self.clear_btn.pack(side=tk.RIGHT, padx=5)
+        desc_text = ("Easily manage and analyze your Visio diagrams.\n"
+                     "Upload your VSDX files, extract details, and visualize your workflows effortlessly.")
+        desc_label = tk.Label(content_frame, 
+                              text=desc_text, 
+                              font=('Segoe UI', 14),
+                              fg=self.desc_color, 
+                              bg=self.bg_color, 
+                              justify="center")
+        desc_label.grid(row=1, column=0, pady=10, sticky="n")
 
-    def append_message(self, sender, message):
-        """
-        Append a message to the chat display.
-        """
-        self.chat_display.configure(state='normal')
-        # Insert sender label (capitalize first letter)
-        self.chat_display.insert(tk.END, f"{sender.capitalize()}:\n", sender)
-        self.chat_display.insert(tk.END, message + "\n\n", sender)
-        self.chat_display.configure(state='disabled')
-        # Auto-scroll to the bottom
-        self.chat_display.see(tk.END)
+        upload_btn = HoverButton(content_frame, text="Upload File", command=self.upload_file)
+        upload_btn.grid(row=2, column=0, pady=30)
 
     def upload_file(self):
-        """
-        Open a file dialog to select a VSDX file, process it, and display the results.
-        """
-        file_path = filedialog.askopenfilename(
-            title="Select a VSDX File",
-            filetypes=[("Visio Files", "*.vsdx")]
-        )
-        if file_path:
-            file_name = os.path.basename(file_path)
-            self.append_message("user", f"Uploaded file: {file_name}")
+        print("File upload initiated")
 
-            try:
-                # Process the file and extract details
-                details = extract_vsdx_details(file_path)
-            except Exception as e:
-                details = f"Error processing file: {str(e)}"
-                messagebox.showerror("Processing Error", details)
-
-            self.append_message("bot", details)
-
-    def clear_chat(self):
-        """
-        Clear the chat display.
-        """
-        self.chat_display.configure(state='normal')
-        self.chat_display.delete(1.0, tk.END)
-        self.chat_display.configure(state='disabled')
-
-# -------------------------------
-# Run the Application
-# -------------------------------
-if __name__ == "__main__":
+def main():
     root = tk.Tk()
-    app = VSDXAnalyzerApp(root)
+    app = VisioDiagramApp(root)
     root.mainloop()
+
+if __name__ == "__main__":
+    main()
