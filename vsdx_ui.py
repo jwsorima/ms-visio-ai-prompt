@@ -47,7 +47,10 @@ class VisioChatbotApp(ctk.CTk):
             self.chat_output.insert("end", "🤖 (Backend processing will go here...)\n\n")
             self.chat_output.see("end")
             self.chat_output.configure(state="disabled")
-            
+
 if __name__ == "__main__":
     app = VisioChatbotApp()
     app.mainloop()
+
+
+#test12345
