@@ -79,3 +79,4 @@ chat_completion = client.chat.completions.create(
 print(chat_completion.choices[0].message.content)
 #test comment TESTER
 #test grock
+#test grock part 2
