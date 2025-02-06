@@ -1,51 +1,68 @@
+from http.client import HTTPResponse
 import urllib.request
 import json
+from typing import Dict, Any
 from vsdx_parser import extract_vsdx_details
-
-file_path = "docs/converttoMPHtoKPH.vsdx"
-
-parsed_details = extract_vsdx_details(file_path)
 
 url = "http://localhost:11434/api/generate"
 headers = {"Content-Type": "application/json"}
-data = {
-  "model": "llama3.2",
-  "prompt": f"""
-    {parsed_details}
 
-    These are data extracted from a VSDX file. Can you understand what the diagram represents?
+def insert_vsdx_data(parsed_details: str) -> Dict[str, Any]:
+  return {
+    "model": "llama3.2",
+    "prompt": f"""
+      Forget all details that I sent you before this prompt
 
-    I need two outputs:
+      {parsed_details}
 
-    Step-by-Step Process in sentence:
-      Provide a step-by-step process listed by numbers.
-      If a condition causes a loop back, state: Loops back to "[That part]", e.g., (Loops back to "[Development & User Testing]").
-      DO NOT include IDs or extra explanations.
-      Enclose all text inside shapes within [brackets].
+      These are data extracted from a VSDX file. Can you understand what the diagram represents?
 
-    And
+      I need two outputs:
 
-    Python Implementation:
-      Provide a Python implementation that follows this process exactly.
-      Use while loops for repetition and if conditions for checks.
-      The Python code must be logically correct.
-      DO NOT include comments or formatting syntax; return only plain Python code.
-  """,
-  "stream": True
-}
+      Step-by-Step Process in sentence:
+        Provide a step-by-step process listed by numbers.
+        If a condition causes a loop back, state: Loops back to "[That part]", e.g., (Loops back to "[Development & User Testing]").
+        DO NOT include IDs or extra explanations.
+        Enclose all text inside shapes within [brackets].
 
-json_data = json.dumps(data).encode("utf-8")
+      And
 
-req = urllib.request.Request(url, data=json_data, headers=headers, method="POST")
+      Python Implementation:
+        Provide a Python implementation that follows this process exactly.
+        Use while loops for repetition and if conditions for checks.
+        The Python code must be logically correct.
+        DO NOT include comments or formatting syntax; return only plain Python code.
+    """,
+    "stream": True
+  }
 
+def prompt_ai_with_vsdx_data(file_path: str) -> HTTPResponse:
+  parsed_details = extract_vsdx_details(file_path)
+  data = insert_vsdx_data(parsed_details)
+  json_data = json.dumps(data).encode("utf-8")
 
-with urllib.request.urlopen(req) as response:
-  for line in response:
-    if line:
-      line_data = line.decode("utf-8").strip()
-      if line_data:
-        try:
-          json_line = json.loads(line_data)
-          print(json_line.get("response", ""), end="", flush=True)
-        except json.JSONDecodeError:
-          pass
+  req = urllib.request.Request(url, data=json_data, headers=headers, method="POST")
+
+  return urllib.request.urlopen(req)
+
+def _main():
+  file_path = "docs/converttoMPHtoKPH.vsdx"
+  parsed_details = extract_vsdx_details(file_path)
+  data = insert_vsdx_data(parsed_details)
+  json_data = json.dumps(data).encode("utf-8")
+
+  req = urllib.request.Request(url, data=json_data, headers=headers, method="POST")
+
+  with urllib.request.urlopen(req) as response:
+    for line in response:
+      if line:
+        line_data = line.decode("utf-8").strip()
+        if line_data:
+          try:
+            json_line = json.loads(line_data)
+            print(json_line.get("response", ""), end="", flush=True)
+          except json.JSONDecodeError:
+            pass
+
+if __name__ == "__main__":
+  _main()
