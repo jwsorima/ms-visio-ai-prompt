@@ -1,6 +1,8 @@
 import customtkinter as ctk
 from tkinter import filedialog
 import time
+import tkinter as tk
+from tkinter import ttk
 
 ctk.set_appearance_mode("Light")
 ctk.set_default_color_theme("blue")
@@ -126,26 +128,24 @@ class VisioChatbotApp(ctk.CTk):
     msg_frame.pack(fill="x", pady=8, padx=15)
 
     if sender == "system":
-      # Bot styling
       avatar_label = ctk.CTkLabel(
         msg_frame,
         text="🤖",
         font=("Segoe UI", 20),
         width=35
       )
-      bubble_color = "#edf6ff"  # Light blue tint for bot messages
+      bubble_color = "#edf6ff"
       border_color = "#d1e6ff"
       text_color = "#0a2540"
       align = "left"
     else:
-      # User styling
       avatar_label = ctk.CTkLabel(
         msg_frame,
         text="👤",
         font=("Segoe UI", 20),
         width=35
       )
-      bubble_color = "#f0f4f9"  # Light gray for user messages
+      bubble_color = "#f0f4f9"
       border_color = "#e2e8f0"
       text_color = "#2d3748"
       align = "right"
@@ -158,15 +158,38 @@ class VisioChatbotApp(ctk.CTk):
       border_color=border_color
     )
     
-    message_text = ctk.CTkLabel(
+    # Create a Text widget instead of Label for selectable text
+    message_text = tk.Text(
       message_bubble,
-      text=message,
+      wrap="word",
       font=("Segoe UI", 13),
-      text_color=text_color,
-      wraplength=620,
-      justify="left"
+      fg=text_color,
+      bg=bubble_color,
+      relief="flat",
+      height=0,  # Height will adjust automatically
+      cursor="ibeam",
+      padx=16,
+      pady=12,
+      width=1  # Width will be adjusted by pack
     )
-    message_text.pack(padx=16, pady=12)
+    
+    # Configure tags for styling
+    message_text.tag_configure("default", lmargin1=16, lmargin2=16)
+    message_text.tag_configure("selection", background="#b3d4ff")
+    
+    # Insert the message with styling
+    message_text.insert("1.0", message, "default")
+    
+    # Make it read-only but selectable
+    message_text.configure(state="disabled")
+    
+    # Enable selection and copying
+    message_text.bind("<Control-c>", lambda e: self.copy_selected_text(e, message_text))
+    
+    # Adjust height automatically based on content
+    message_text.pack(fill="both", expand=True)
+    height = int(message_text.index('end-1c').split('.')[0])
+    message_text.configure(height=height)
 
     if align == "left":
       avatar_label.pack(side="left", padx=(0, 8))
@@ -174,6 +197,29 @@ class VisioChatbotApp(ctk.CTk):
     else:
       avatar_label.pack(side="right", padx=(8, 0))
       message_bubble.pack(side="right", fill="x", expand=True, padx=(80, 0))
+
+  def copy_selected_text(self, event, text_widget):
+    try:
+      # Get selected text
+      selected_text = text_widget.get("sel.first", "sel.last")
+      if selected_text:
+        # Copy to clipboard
+        self.clipboard_clear()
+        self.clipboard_append(selected_text)
+        
+        # Visual feedback
+        self.show_copy_feedback(text_widget)
+    except tk.TclError:
+      # No selection
+      pass
+
+  def show_copy_feedback(self, text_widget):
+    # Save original colors
+    original_bg = text_widget.cget("bg")
+    
+    # Flash effect
+    text_widget.configure(bg="#e6f0ff")
+    self.after(150, lambda: text_widget.configure(bg=original_bg))
 
   def add_file_separator(self):
     separator = ctk.CTkFrame(
