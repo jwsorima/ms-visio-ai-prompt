@@ -1,3 +1,8 @@
+#To Add
+# after upload trigger scroll down
+# add ui response after ai is completed
+# add thread for vsdx_parser to prevent ui freeze
+
 import customtkinter as ctk
 from tkinter import filedialog
 import time
@@ -54,38 +59,39 @@ class VisioChatbotApp(ctk.CTk):
     msg_frame.pack(fill="x", pady=8, padx=10, anchor="w" if sender == "system" else "e")
 
     if sender == "system":
-      avatar_label = ctk.CTkLabel(msg_frame, text="🤖", font=("Segoe UI", 20), width=40)
-      bubble_color = "#f0f4f9"
+        avatar_label = ctk.CTkLabel(msg_frame, text="🤖", font=("Segoe UI", 20), width=40)
+        bubble_color = "#f0f4f9"
     else:
-      avatar_label = ctk.CTkLabel(msg_frame, text="👤", font=("Segoe UI", 20), width=40)
-      bubble_color = "#e9ecef"
+        avatar_label = ctk.CTkLabel(msg_frame, text="👤", font=("Segoe UI", 20), width=40)
+        bubble_color = "#e9ecef"
 
-    message_bubble = ctk.CTkFrame(msg_frame, corner_radius=15, fg_color=bubble_color, border_width=1, border_color="#e0e0e0")
+    message_bubble = ctk.CTkFrame(msg_frame, corner_radius=15, fg_color=bubble_color, border_width=0, border_color="#e0e0e0")
     message_bubble.pack(fill="x", expand=True, padx=(0, 80) if sender == "system" else (80, 0), anchor="w")
 
     message_text = ctk.CTkTextbox(
-      message_bubble,
-      font=("Segoe UI", 13),
-      text_color="#1a1a1a",
-      wrap="none",
-      width=600,
-      corner_radius=10,
-      fg_color=bubble_color,
-      border_width=0
+        message_bubble,
+        font=("Segoe UI", 17),
+        text_color="#1a1a1a",
+        wrap="word",
+        width=600,
+        height=10,
+        corner_radius=10,
+        fg_color=bubble_color,
+        border_width=0
     )
 
-    formatted_message = "\n".join(line.replace("    ", "\t") for line in message.split("\n"))
+    formatted_message = "\n".join(line.rstrip() for line in message.split("\n"))
 
     message_text.insert("1.0", formatted_message)
     message_text.configure(state="disabled")
-    message_text.pack(padx=15, pady=10, fill="both", expand=True)
+    message_text.pack(padx=0, pady=0, fill="both", expand=True)
 
     self.after(50, lambda: self.resize_textbox(message_text))
 
     return message_text
 
   def update_typing_message(self, msg_widget, new_text):
-    formatted_text = "\n".join(line.replace("    ", "\t") for line in new_text.split("\n"))
+    formatted_text = "\n".join(line.rstrip() for line in new_text.split("\n"))
 
     msg_widget.configure(state="normal")
     msg_widget.delete("1.0", "end")
@@ -97,8 +103,10 @@ class VisioChatbotApp(ctk.CTk):
     self.messages_frame._parent_canvas.yview_moveto(1.0)
 
   def resize_textbox(self, msg_widget):
-    num_lines = msg_widget.get("1.0", "end").count("\n") + 1
-    msg_widget.configure(height=num_lines * 20)
+    num_lines = msg_widget.get("1.0", "end-1c").count("\n") + 1
+    calculated_height = (num_lines * 25) + 5
+
+    msg_widget.configure(height=calculated_height)
 
   def finalize_typing_message(self, msg_widget):
     self.messages_frame._parent_canvas.yview_moveto(1.0)
@@ -134,7 +142,7 @@ class VisioChatbotApp(ctk.CTk):
             message = json_line.get("response", "")
 
             if message:
-              full_response += message + ""
+              full_response += message
               print(message, end="", flush=True)
 
               formatted_response = "\n".join(line.rstrip() for line in full_response.split("\n"))
