@@ -5,92 +5,88 @@
 # if the condition says loop back just say Loops back to "That part" ex. (Loops back to "Development & User Testing")
 # can you get the process description of this diagram?
 
+import json
+import pandas as pd
 from vsdx import VisioFile
-from collections import defaultdict
 
 def extract_vsdx_details(file_path):
-    with VisioFile(file_path) as vis:
-      details = "Extracted Visio Diagram Data:\n"
-      
-      for page in vis.pages:
-        details += f"\nPage: {page.name}\n"
+  shapes_list = []
+
+  with VisioFile(file_path) as vis:
+    for page in vis.pages:
+      for shape in page.child_shapes:
+        shape_id = shape.ID
+        shape_text = shape.text.strip() if shape.text else "No Text"
         
-        for shape in page.child_shapes:
-          shape_id = shape.ID
-          shape_text = shape.text.strip() if shape.text else ""
+        shape_text = shape_text.replace("\u2028", " ").replace("\u2029", " ")
 
-          shape_type = shape.universal_name if shape.universal_name else "Unknown"
-          
-          # Additional Classification
-          if shape_text.endswith("?"):
-            shape_type = "Decision"
+        shape_type = shape.universal_name if shape.universal_name else "Unknown"
 
-          
-          shape_x = shape.x
-          shape_y = shape.y
-          shape_width = shape.width
-          shape_height = shape.height
-          
-          details += (
-              f"Shape ID {shape_id}:\n"
-              f"   • Is Connector: {True if shape.end_arrow and shape.end_arrow != 0 else False}\n"
-              f"   • Text: '{shape_text}'\n"
-              f"   • Type: {shape_type}\n"
-              f"   • Position: (X: {shape_x}, Y: {shape_y})\n"
-              f"   • Dimensions: (Width: {shape_width}, Height: {shape_height})\n"
-          )
+        # Additional Classification
+        if shape_text.endswith("?"):
+          shape_type = "Decision"
 
-          unique_connections = set()
+        shape_x = shape.x
+        shape_y = shape.y
+        shape_width = shape.width
+        shape_height = shape.height
 
-          if shape.connects:
-            details += (f"\n")
-            for conn in shape.connects:
-              connected_shape = conn.shape
-              # from_shape = conn.from_id
+        shape_data = {
+          "Page": page.name,
+          "Shape ID": shape_id,
+          "Text": shape_text,
+          "Type": shape_type,
+          "X": shape_x,
+          "Y": shape_y,
+          "Dimensions": {"Width": shape_width, "Height": shape_height},
+          "Is Connector": False,
+          "Connections": []
+        }
 
-              # if from_shape and connected_shape:
-              #   print(f"Shape ID {shape.ID} :Connector from '{from_shape}' to '{connected_shape.ID}'")
+        is_connector_added = False
 
+        if shape.connects:
+          for conn in shape.connects:
+            connected_shape = conn.shape
+            from_shape = conn.from_id
+            from_cell = conn.from_rel
 
-              from_shape = conn.from_id  # Get source shape ID
-              from_cell = conn.from_rel  # Get specific connection point (may be None)
+            if connected_shape and connected_shape.ID == shape.ID:
+              continue
 
+            if from_shape and connected_shape:
+              if not is_connector_added:
+                shape_data["Is Connector"] = True
+                is_connector_added = True
 
+              if from_cell == 'BeginX':
+                shape_data["Connections"].append(
+                  {"Direction": "From", "Connected To": connected_shape.text.strip()}
+                )
+              elif from_cell == 'EndX':
+                shape_data["Connections"].append(
+                  {"Direction": "To", "Connected To": connected_shape.text.strip()}
+                )
 
-              if connected_shape and connected_shape.ID == shape.ID:
-                  continue
+        shapes_list.append(shape_data)
 
-              if from_shape and connected_shape:
-                # print(f"Shape ID {shape.ID}: Connector from '{from_shape}' ({from_cell}) to '{connected_shape.ID}'")
+  # Convert to DataFrame for sorting
+  df = pd.DataFrame(shapes_list)
 
-                if (from_cell == 'BeginX'):
-                  details += (f"   • From '{connected_shape.text.strip()}' to this arrow\n")
-                elif (from_cell == 'EndX'):
-                  details += (f"   • This arrow to '{connected_shape.text.strip()}'\n")
+  # Sort by Y descending (higher values first) and then X ascending (left-to-right)
+  df = df.sort_values(by=["Y", "X"], ascending=[False, True])
 
-              # connected_text = (
-              #   connected_shape.text.strip()
-              #   if connected_shape and connected_shape.text
-              #   else f"Shape ID {connected_shape.ID}"
-              #   if connected_shape
-              #   else "Unknown"
-              # )
+  # Convert sorted DataFrame back to list of dictionaries
+  sorted_shapes_list = df.to_dict(orient="records")
 
-              # # Store as a tuple to avoid duplicates
-              # connection_tuple = (shape_text, connected_text)
-              # if connection_tuple not in unique_connections:
-              #   unique_connections.add(connection_tuple)
-              #   details += f"   • Connected to: {connected_text}\n"
+  # Convert to JSON format with `ensure_ascii=False` to keep special characters readable
+  json_output = json.dumps(sorted_shapes_list, indent=2, ensure_ascii=False)
 
-
-      return details
+  return json_output
 
 # Example Usage
 # file_path = "docs/Agile.Release.Process.Flowchart.Visiodiagram.vsdx"
 # file_path = "docs/Basic Flowchart Diagram - Student Enrollment Process.vsdx"
+# file_path = "docs/Drawing2.vsdx"
 # parsed_details = extract_vsdx_details(file_path)
 # print(parsed_details)
-
-
-
-# make output json like
