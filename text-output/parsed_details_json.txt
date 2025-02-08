@@ -1,0 +1,766 @@
+[
+  {
+    "Page": "Page-1",
+    "Shape ID": "1",
+    "Text": "No Text",
+    "Type": "Unknown",
+    "X": 3.183593693596728,
+    "Y": 9.573242141865196,
+    "Dimensions": {
+      "Width": 8.5,
+      "Height": 0.0
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "69",
+    "Text": "1",
+    "Type": "Unknown",
+    "X": 3.144531193596729,
+    "Y": 9.424804641865196,
+    "Dimensions": {
+      "Width": 0.296875,
+      "Height": 0.296875
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "2",
+    "Text": "No Text",
+    "Type": "Bottom to top.33",
+    "X": 3.136718806286758,
+    "Y": 9.133789016865196,
+    "Dimensions": {
+      "Width": 0.0,
+      "Height": 0.36328125
+    },
+    "Is Connector": true,
+    "Connections": [
+      {
+        "Direction": "To",
+        "Connected To": "Acquire Units"
+      }
+    ]
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "3",
+    "Text": "Acquire Units",
+    "Type": "Hexagon.37",
+    "X": 3.136718806286758,
+    "Y": 8.698242141865196,
+    "Dimensions": {
+      "Width": 0.71875,
+      "Height": 0.5078125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "37",
+    "Text": "No Text",
+    "Type": "Unknown",
+    "X": 3.781704058370091,
+    "Y": 8.698242141865196,
+    "Dimensions": {
+      "Width": 0.460029495833334,
+      "Height": 0.0
+    },
+    "Is Connector": true,
+    "Connections": [
+      {
+        "Direction": "From",
+        "Connected To": "Acquire Units"
+      }
+    ]
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "35",
+    "Text": "Unit                         PC_SKID_BAY3COL\nPC_CP (U_CP_T398)",
+    "Type": "Unknown",
+    "X": 5.5334821991439,
+    "Y": 8.698242141865196,
+    "Dimensions": {
+      "Width": 2.44233630952381,
+      "Height": 0.5638923267326733
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "25",
+    "Text": "No Text",
+    "Type": "Resource Box",
+    "X": 5.589843806286758,
+    "Y": 8.698242141865196,
+    "Dimensions": {
+      "Width": 3.15625,
+      "Height": 0.5638923267326733
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "36",
+    "Text": "Equipment Status Profile\n\"E\"\n\"C\"",
+    "Type": "Unknown",
+    "X": 6.525483687239139,
+    "Y": 8.698242141865196,
+    "Dimensions": {
+      "Width": 1.277529761904762,
+      "Height": 0.5638923267326733
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "47",
+    "Text": "No Text",
+    "Type": "Unknown",
+    "X": 3.136718806286758,
+    "Y": 8.147460891865192,
+    "Dimensions": {
+      "Width": 0.1875,
+      "Height": 0.0
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "48",
+    "Text": "Set CYCLES_REMAINING = 0",
+    "Type": "Unknown",
+    "X": 3.839843806286759,
+    "Y": 8.147460891865192,
+    "Dimensions": {
+      "Width": 1.15625,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "16",
+    "Text": "No Text",
+    "Type": "Bottom to top.11",
+    "X": 3.136718806286758,
+    "Y": 8.11979162103186,
+    "Dimensions": {
+      "Width": 0.0,
+      "Height": 0.6490885416666714
+    },
+    "Is Connector": true,
+    "Connections": [
+      {
+        "Direction": "From",
+        "Connected To": "Acquire Units"
+      }
+    ]
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "52",
+    "Text": "PC_SKID_BAY3COL",
+    "Type": "Unknown",
+    "X": 2.636718806286758,
+    "Y": 7.860351516865192,
+    "Dimensions": {
+      "Width": 0.8125,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "51",
+    "Text": "M_Instructions",
+    "Type": "Process.64",
+    "X": 3.136718806286758,
+    "Y": 7.672851516865192,
+    "Dimensions": {
+      "Width": 1.0,
+      "Height": 0.25
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "53",
+    "Text": "\"Following the Q-Sepharose column packing on ticket G97347 obtain the packed 2C4v1.0 Q-Sepharose column.\"",
+    "Type": "Unknown",
+    "X": 4.87109369359673,
+    "Y": 7.643337627976303,
+    "Dimensions": {
+      "Width": 2.15625,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "54",
+    "Text": "No Text",
+    "Type": "Bottom to top.67",
+    "X": 3.136718806286758,
+    "Y": 7.327799433531858,
+    "Dimensions": {
+      "Width": 0.0,
+      "Height": 0.4401041666666679
+    },
+    "Is Connector": true,
+    "Connections": [
+      {
+        "Direction": "From",
+        "Connected To": "M_Instructions"
+      }
+    ]
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "18",
+    "Text": "PC_SKID_BAY3COL",
+    "Type": "Unknown",
+    "X": 2.636718806286758,
+    "Y": 7.172851516865192,
+    "Dimensions": {
+      "Width": 0.8125,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "38",
+    "Text": "“Enter the packed Q-Sepharose column MEI# exactly as it appears in the MEI label.” (DoneBy/CheckBy)",
+    "Type": "Unknown",
+    "X": 4.714843806286758,
+    "Y": 6.989257766865192,
+    "Dimensions": {
+      "Width": 1.84375,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "17",
+    "Text": "M_COL_MEI",
+    "Type": "Process.13",
+    "X": 3.136718806286758,
+    "Y": 6.985351516865192,
+    "Dimensions": {
+      "Width": 1.0,
+      "Height": 0.25
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "19",
+    "Text": "No Text",
+    "Type": "Bottom to top.7",
+    "X": 3.136718806286758,
+    "Y": 6.737304641865192,
+    "Dimensions": {
+      "Width": 0.0,
+      "Height": 0.24609375
+    },
+    "Is Connector": true,
+    "Connections": [
+      {
+        "Direction": "From",
+        "Connected To": "M_COL_MEI"
+      }
+    ]
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "39",
+    "Text": "No Text",
+    "Type": "Unknown",
+    "X": 3.105468806286758,
+    "Y": 6.614257766865192,
+    "Dimensions": {
+      "Width": 4.375,
+      "Height": 0.0
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "41",
+    "Text": "No Text",
+    "Type": "Unknown",
+    "X": 1.667968806286758,
+    "Y": 6.383789016865192,
+    "Dimensions": {
+      "Width": 0.25,
+      "Height": 0.0
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "43",
+    "Text": "Ask \"Column packed with all new resin?\"",
+    "Type": "Unknown",
+    "X": 2.574218806286758,
+    "Y": 6.383789016865192,
+    "Dimensions": {
+      "Width": 1.4375,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "44",
+    "Text": "No Text",
+    "Type": "Unknown",
+    "X": 4.792968806286758,
+    "Y": 6.383789016865192,
+    "Dimensions": {
+      "Width": 0.25,
+      "Height": 0.0
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "46",
+    "Text": "Ask \"Column packed with new and old resin?\"",
+    "Type": "Unknown",
+    "X": 5.699218806286758,
+    "Y": 6.383789016865192,
+    "Dimensions": {
+      "Width": 1.4375,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "50",
+    "Text": "(DoneBy/CheckBy)",
+    "Type": "Unknown",
+    "X": 2.152343806286758,
+    "Y": 6.196289016865192,
+    "Dimensions": {
+      "Width": 0.71875,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "49",
+    "Text": "(DoneBy/CheckBy)",
+    "Type": "Unknown",
+    "X": 5.277343806286758,
+    "Y": 6.196289016865192,
+    "Dimensions": {
+      "Width": 0.71875,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "42",
+    "Text": "No Text",
+    "Type": "Bottom to top.10",
+    "X": 1.667968806286758,
+    "Y": 5.954101516865192,
+    "Dimensions": {
+      "Width": 0.0,
+      "Height": 1.3203125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "68",
+    "Text": "No Text",
+    "Type": "Unknown",
+    "X": 1.636718806286758,
+    "Y": 5.942382766865192,
+    "Dimensions": {
+      "Width": 0.25,
+      "Height": 0.0
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "58",
+    "Text": "Set PC_SKID_BAY3COL..CYCLES_REMAINING = 100",
+    "Type": "Unknown",
+    "X": 2.871093806286758,
+    "Y": 5.942382766865192,
+    "Dimensions": {
+      "Width": 2.09375,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "45",
+    "Text": "No Text",
+    "Type": "Bottom to top.20",
+    "X": 4.792968806286758,
+    "Y": 5.918945266865192,
+    "Dimensions": {
+      "Width": 0.0,
+      "Height": 1.390625
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "60",
+    "Text": "Verify PC_SKID_BAY3COL..CYCLES_REMAINING = 100",
+    "Type": "Unknown",
+    "X": 2.976562524621791,
+    "Y": 5.629882766865192,
+    "Dimensions": {
+      "Width": 2.320312563329933,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "61",
+    "Text": "No Text",
+    "Type": "Unknown",
+    "X": 1.660156242956825,
+    "Y": 5.614257766865192,
+    "Dimensions": {
+      "Width": 0.25,
+      "Height": 0.0
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "59",
+    "Text": "PC_SKID_BAY3COL",
+    "Type": "Unknown",
+    "X": 1.019531242956825,
+    "Y": 5.379882627166809,
+    "Dimensions": {
+      "Width": 0.8125,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "65",
+    "Text": "PC_SKID_BAY3COL",
+    "Type": "Unknown",
+    "X": 4.32421869359673,
+    "Y": 5.286132633686068,
+    "Dimensions": {
+      "Width": 0.8125,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "57",
+    "Text": "N_Col_Cycles",
+    "Type": "Process.75",
+    "X": 1.667968775553114,
+    "Y": 5.161132627166809,
+    "Dimensions": {
+      "Width": 1.0,
+      "Height": 0.25
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "63",
+    "Text": "M_Col_Cycles",
+    "Type": "Process.70",
+    "X": 4.79296869359673,
+    "Y": 5.098632633686066,
+    "Dimensions": {
+      "Width": 1.0,
+      "Height": 0.25
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "64",
+    "Text": "\"Enter number of allowable column cycles as  CYCLES_REMAINING.  Enter a batch comment providing justification for cycle determination.\"\n(DoneBy/CheckBy)",
+    "Type": "Unknown",
+    "X": 6.652343693596728,
+    "Y": 5.067382633686068,
+    "Dimensions": {
+      "Width": 2.5,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "67",
+    "Text": "CYCLES_REMAINING",
+    "Type": "Unknown",
+    "X": 2.386718806286758,
+    "Y": 4.900716100198524,
+    "Dimensions": {
+      "Width": 1.0,
+      "Height": 0.1666666666666665
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "62",
+    "Text": "No Text",
+    "Type": "Bottom to top.76",
+    "X": 1.667968775553114,
+    "Y": 4.770507697016001,
+    "Dimensions": {
+      "Width": 0.0,
+      "Height": 0.5312498603016174
+    },
+    "Is Connector": true,
+    "Connections": [
+      {
+        "Direction": "From",
+        "Connected To": "N_Col_Cycles"
+      }
+    ]
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "66",
+    "Text": "No Text",
+    "Type": "Bottom to top.80",
+    "X": 4.79296869359673,
+    "Y": 4.739257700275629,
+    "Dimensions": {
+      "Width": 0.0,
+      "Height": 0.4687498668208736
+    },
+    "Is Connector": true,
+    "Connections": [
+      {
+        "Direction": "From",
+        "Connected To": "M_Col_Cycles"
+      }
+    ]
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "40",
+    "Text": "No Text",
+    "Type": "Unknown",
+    "X": 3.105468806286758,
+    "Y": 4.504882660694422,
+    "Dimensions": {
+      "Width": 4.375,
+      "Height": 0.0
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "55",
+    "Text": "No Text",
+    "Type": "Unknown",
+    "X": 3.105468806286757,
+    "Y": 4.192382766865192,
+    "Dimensions": {
+      "Width": 0.1875,
+      "Height": 0.0
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "56",
+    "Text": "Set RESIN_TYPE = Q2C4v1.0",
+    "Type": "Unknown",
+    "X": 3.808593806286758,
+    "Y": 4.192382766865192,
+    "Dimensions": {
+      "Width": 1.15625,
+      "Height": 0.125
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "20",
+    "Text": "No Text",
+    "Type": "Bottom to top.59",
+    "X": 3.105468806286758,
+    "Y": 4.176757713779807,
+    "Dimensions": {
+      "Width": 0.0,
+      "Height": 0.65624989382923
+    },
+    "Is Connector": true,
+    "Connections": [
+      {
+        "Direction": "To",
+        "Connected To": "Release Units"
+      }
+    ]
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "21",
+    "Text": "Release Units",
+    "Type": "Hexagon.56",
+    "X": 3.105468806286758,
+    "Y": 3.598632766865192,
+    "Dimensions": {
+      "Width": 0.875,
+      "Height": 0.5
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "22",
+    "Text": "No Text",
+    "Type": "acquire/rel.57",
+    "X": 4.045559547953424,
+    "Y": 3.598632766865192,
+    "Dimensions": {
+      "Width": 0.8698185166666672,
+      "Height": 0.0
+    },
+    "Is Connector": true,
+    "Connections": [
+      {
+        "Direction": "From",
+        "Connected To": "Release Units"
+      }
+    ]
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "4",
+    "Text": "No Text",
+    "Type": "Resource Box.4",
+    "X": 6.074218806286758,
+    "Y": 3.598632766865192,
+    "Dimensions": {
+      "Width": 3.1875,
+      "Height": 0.5
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "15",
+    "Text": "Equipment Status\n\"Packed\"\n\"N/C\"",
+    "Type": "Unknown",
+    "X": 6.98400756935296,
+    "Y": 3.598632766865192,
+    "Dimensions": {
+      "Width": 1.290178571428571,
+      "Height": 0.5
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "14",
+    "Text": "Unit                         PC_SKID_BAY3COL\nPC_CP (U_CP_T398)",
+    "Type": "Unknown",
+    "X": 5.316406306286758,
+    "Y": 3.597220337486661,
+    "Dimensions": {
+      "Width": 1.015625,
+      "Height": 0.4971751412429379
+    },
+    "Is Connector": false,
+    "Connections": []
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "71",
+    "Text": "No Text",
+    "Type": "Bottom to top.84",
+    "X": 3.113281193596728,
+    "Y": 3.157812454365192,
+    "Dimensions": {
+      "Width": 0.0,
+      "Height": 0.368359375
+    },
+    "Is Connector": true,
+    "Connections": [
+      {
+        "Direction": "To",
+        "Connected To": "2"
+      }
+    ]
+  },
+  {
+    "Page": "Page-1",
+    "Shape ID": "70",
+    "Text": "2",
+    "Type": "Unknown",
+    "X": 3.113281193596728,
+    "Y": 2.825195266865192,
+    "Dimensions": {
+      "Width": 0.296875,
+      "Height": 0.296875
+    },
+    "Is Connector": false,
+    "Connections": []
+  }
+]
