@@ -11,45 +11,157 @@ def insert_vsdx_data(parsed_details: str) -> Dict[str, Any]:
   return {
     # "model": "llama3.2",
     "model": "llama3.1:8b",
+    # "prompt": f"""
+    #   Analyze the following JSON data extracted from a VSDX file representing a process flow diagram.
+
+    #   {parsed_details}
+
+    #   ### **Step 1: Identify All Major Process Steps**
+    #   - Extract all **process-related shapes** (e.g., Hexagon, Process, Unknown with meaningful text).
+    #   - Order them **top-to-bottom (descending Y-coordinates)** to infer flow.
+    #   - Classify each shape into **Process, Decision, Validation, or Output**.
+    #   - Clearly define what role each plays in the process.
+
+    #   ### **Step 2: Determine Explicit and Inferred Logical Connections**
+    #   - Identify **explicit connections** (direct "From" and "To" links).
+    #   - For **missing connections**, infer the most logical flow based on:
+    #     - **Vertical proximity** (closer Y-values suggest sequential steps).
+    #     - **Shape type** (Process → Decision → Verification → Next Process).
+    #     - **Contextual meaning** (e.g., "Verify" steps should follow cycle-setting steps).
+    #   - Mark where **flow diverges into branches** (decision points).
+    #   - Identify where **separate paths converge back into a single sequence**.
+
+    #   ### **Step 3: Infer & Validate Missing Links**
+    #   - Check if any shape **has no incoming or outgoing connections** and logically determine its place in the sequence.
+    #   - Ensure that **all decisions** flow **back into the main path**.
+    #   - If **steps are missing** but needed for logical continuity, explicitly state **the inferred transitions**.
+
+    #   ### **Step 4: Generate the Fully Structured Workflow**
+    #   - Output a **clear, numbered step-by-step process** that follows the inferred workflow.
+    #   - Ensure **each transition is justified** and properly connected.
+    #   - Use **nested conditions** to clearly **differentiate decisions, sequential actions, and validation steps**.
+    #   - **The process must begin with "Acquire Units" and end with "Release Units".**
+    #   - If any **assumptions are made (e.g., inferred missing connections), explicitly state the reasoning behind them.**
+
+    #   ### **Expected Output Format**
+    #   - Numbered list of **each process step** in order.
+    #   - **Decision points handled with conditional branches**.
+    #   - **Clearly indicate when paths diverge and merge back**.
+    #   - If a step **was inferred**, include a note explaining why it logically belongs in the sequence.
+
+    #   Now, perform the analysis and generate the structured workflow.
+    # """,
     "prompt": f"""
-      Analyze the following JSON data extracted from a VSDX file representing a process flow diagram.
+      Objective
+      Analyze JSON data extracted from a VSDX process flow diagram, where explicit shape-to-shape connections may be missing.
+      Your task is to strictly reconstruct the logical workflow in a step-by-step manner, ensuring all process steps are sequentially valid and missing links are properly inferred.
+
+      Required Output Format
+      Your output must include the following:
+
+      Step-by-Step Ordered Workflow (Human-Readable Explanation)
+
+      Explain the process in natural language as if you were describing it to someone unfamiliar with the diagram.
+      Do not just list shape IDs—each step should be described in plain, understandable text.
+      
+      Divergence and Convergence Analysis (Decision Paths Must Rejoin Before Continuing)
+
+      Clearly state where decisions split into different paths (YES/NO) and how they rejoin.
+      Ensure that NO further steps occur before validation is completed.
+
+      Final Release Step Identification
+
+      Explicitly mark the final step that completes the workflow and explain why it is the last step.
+
+      Rules for Logical Flow Determination (Strict Validation & Missing Link Recovery Required)
+
+      1. Identifying Start and End Points
+         - Start Point: Identify the shape with the highest Y-coordinate that contains meaningful text and represents an initialization, action, or decision.
+         - End Point: Identify the lowest Y-coordinate shape that signals process completion (e.g., "Release Units").
+      
+      2. Primary Flow Ordering (Strict Positional Alignment)
+         - Higher Y-values occur first (earlier in the sequence).
+         - Horizontal alignment suggests decision branching (YES/NO paths) or parallel actions.
+
+      3. Missing Link Enforcement (Strict Pre-Validation Required Before Assignments)
+         - If a step assigns a value (e.g., setting CYCLES_REMAINING), verification must occur first.
+         - If verification (Shape 60) follows assignment (Shape 58), it must explicitly happen before moving forward.
+
+      4. Decision Path Enforcements (Flow Must Merge Before Continuing)
+         - YES/NO paths must be explicitly merged before verification happens.
+         - Flow cannot continue to assignments like resin type (Shape 56) until the merged path completes validation.
+
+      Example Output Using the Provided JSON Data (Step-by-Step Explanation)
+
+      Step-by-Step Process Flow (Human-Readable Format)
+
+      1. **Acquire the necessary units**
+         - The process begins by acquiring the required unit for processing.
+         (Shape ID "3" - "Acquire Units")
+
+      2. **Reset the cycle count before starting**
+         - The system ensures a clean start by setting CYCLES_REMAINING = 0.
+         (Shape ID "48")
+
+      3. **Retrieve instructions for the process**
+         - Operators must follow specific instructions to ensure proper execution.
+         (Shape ID "51" - "M_Instructions")
+
+      4. **Obtain the packed Q-Sepharose column**
+         - This step ensures the required column is obtained before validation.
+         (Shape ID "53")
+
+      5. **Enter the column's MEI number for tracking**
+         - The operator must record the exact MEI number as labeled.
+         (Shape ID "38")
+
+      6. **Decision: "Was the column packed with all new resin?"**
+         - At this point, the process branches into two possible paths:
+           - **YES Path:** The column is fully new and follows automatic cycle count updating.
+           - **NO Path:** The column contains a mix of new and old resin, requiring manual justification.
+         (Shape ID "43")
+
+      7. **Parallel Processing (YES/NO Path Enforcement)**
+         - **YES Path (New Resin) →**
+           - Automatically set CYCLES_REMAINING to 100. (Shape ID "58")
+           - Prepare for verification of the updated cycle count.
+         - **NO Path (Mixed Resin) →**
+           - Manually enter the number of cycles allowed and provide justification. (Shape ID "64")
+           - Prepare for verification of the updated cycle count.
+
+      8. **Merge YES/NO Paths Before Verification**
+         - Before verification can occur, both paths must **converge into a single flow.**
+         - This ensures all cycle counts, whether automatically set or manually entered, are validated **in the same process.**
+
+      9. **Verify that the cycle count is correct before continuing**
+         - **This is a critical validation step.**
+         - **No further processing (e.g., resin assignment) can occur unless this verification passes.**
+         (Shape ID "60")
+
+      10. **Set the resin type after verification confirms correctness**
+         - Only after verification passes can the resin type be assigned.
+         (Shape ID "56")
+
+      11. **Finalize the process by releasing the units**
+         - The final step marks the end of the workflow, confirming all requirements are met.
+         (Shape ID "21")
+
+      Divergence and Convergence Analysis (Step-by-Step Explanation)
+
+      - The process diverges at Step 6 when a decision is made regarding whether the column is packed with all new resin.
+        - **YES Path (automatic update)** → immediately sets cycles to 100.
+        - **NO Path (manual entry required)** → requires user input before continuing.
+      - **Paths must merge before verification (Step 8)**
+        - **Cycle count verification (Step 9) is the merging point** that ensures process correctness.
+      - **Final convergence happens before resin assignment (Step 10)**
+        - The **resin type cannot be assigned until verification is completed.**
+
+      Final Release Step Identification
+
+      - The workflow officially ends with Step 11: "Release Units".
+      - This ensures all units are processed correctly and released according to the verified cycle count.
 
       {parsed_details}
-
-      ### **Step 1: Identify All Major Process Steps**
-      - Extract all **process-related shapes** (e.g., Hexagon, Process, Unknown with meaningful text).
-      - Order them **top-to-bottom (descending Y-coordinates)** to infer flow.
-      - Classify each shape into **Process, Decision, Validation, or Output**.
-      - Clearly define what role each plays in the process.
-
-      ### **Step 2: Determine Explicit and Inferred Logical Connections**
-      - Identify **explicit connections** (direct "From" and "To" links).
-      - For **missing connections**, infer the most logical flow based on:
-        - **Vertical proximity** (closer Y-values suggest sequential steps).
-        - **Shape type** (Process → Decision → Verification → Next Process).
-        - **Contextual meaning** (e.g., "Verify" steps should follow cycle-setting steps).
-      - Mark where **flow diverges into branches** (decision points).
-      - Identify where **separate paths converge back into a single sequence**.
-
-      ### **Step 3: Infer & Validate Missing Links**
-      - Check if any shape **has no incoming or outgoing connections** and logically determine its place in the sequence.
-      - Ensure that **all decisions** flow **back into the main path**.
-      - If **steps are missing** but needed for logical continuity, explicitly state **the inferred transitions**.
-
-      ### **Step 4: Generate the Fully Structured Workflow**
-      - Output a **clear, numbered step-by-step process** that follows the inferred workflow.
-      - Ensure **each transition is justified** and properly connected.
-      - Use **nested conditions** to clearly **differentiate decisions, sequential actions, and validation steps**.
-      - **The process must begin with "Acquire Units" and end with "Release Units".**
-      - If any **assumptions are made (e.g., inferred missing connections), explicitly state the reasoning behind them.**
-
-      ### **Expected Output Format**
-      - Numbered list of **each process step** in order.
-      - **Decision points handled with conditional branches**.
-      - **Clearly indicate when paths diverge and merge back**.
-      - If a step **was inferred**, include a note explaining why it logically belongs in the sequence.
-
-      Now, perform the analysis and generate the structured workflow.
     """,
     # "prompt": f"""
     #   {parsed_details}
